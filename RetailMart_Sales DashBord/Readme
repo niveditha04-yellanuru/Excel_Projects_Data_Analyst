@@ -1,0 +1,250 @@
+RetailMart – Retail Sales & Profit Performance Analysis
+📊 Project Overview
+
+This project presents an end-to-end Retail Sales & Profit Performance Analysis using Microsoft Excel.
+
+The objective was to transform raw retail transaction data into meaningful business insights through data cleaning, calculations, Pivot Table analysis, KPI development, and an interactive dashboard.
+
+🎯 Business Problem
+
+RetailMart wants to understand:
+
+Which regions generate the highest sales and profit?
+Which products and categories perform best?
+Which products have high sales but low profitability?
+How do discounts affect profit margins?
+Which months have the strongest and weakest performance?
+Which payment methods contribute most to sales?
+Which areas require management attention?
+🛠️ Tools & Technologies
+Microsoft Excel
+Excel Tables
+Advanced Excel Formulas
+Pivot Tables
+Pivot Charts
+Slicers
+Conditional Formatting
+Data Validation
+Map Visualization
+KPI Dashboard
+📁 Project Structure
+RetailMart-Retail-Sales-Analysis/
+│
+├── 01_Raw_Data/
+│   └── RetailMart_Retail_Sales_1200_Rows.xlsx
+│
+├── 02_Data_Cleaning/
+│   └── Data_Cleaning.xlsx
+│
+├── 03_Calculations/
+│   └── Calculations.xlsx
+│
+├── 04_Pivot_Analysis/
+│   └── Pivot_Analysis.xlsx
+│
+├── 05_Dashboard/
+│   └── RetailMart_Dashboard.xlsx
+│
+├── 06_Insights/
+│   └── Business_Insights.xlsx
+│
+├── 07_Documentation/
+│   └── Project_Documentation.docx
+│
+└── README.md
+📌 Dataset
+
+The project uses 1,200 retail transactions containing:
+
+Order ID
+Order Date
+Customer ID
+Customer Name
+Region
+State
+City
+Category
+Product
+Quantity
+Unit Price
+Discount
+Sales
+Cost
+Profit
+Payment Mode
+Salesperson
+🔄 Project Workflow
+Raw Data
+    ↓
+Data Cleaning
+    ↓
+Calculations
+    ↓
+Pivot Table Analysis
+    ↓
+Dashboard
+    ↓
+Business Questions
+    ↓
+Insights
+    ↓
+Recommendations
+🧹 Data Cleaning
+
+The dataset was checked for:
+
+Duplicate Order IDs
+Missing values
+Blank dates
+Invalid dates
+Future dates
+Invalid quantities
+Discounts below 0%
+Discounts above 100%
+Extra spaces
+Inconsistent text values
+
+The purpose was to ensure that the analysis was based on reliable and consistent data.
+
+🧮 Calculations
+
+The following calculated fields were created.
+
+Gross Sales
+Quantity × Unit Price
+Discount Amount
+Gross Sales × Discount
+Net Sales
+Gross Sales − Discount Amount
+Profit
+Net Sales − Cost
+Profit Margin %
+Profit ÷ Net Sales
+Order Month
+
+Transactions were converted into month-year format:
+
+Jan-2026
+Feb-2026
+Mar-2026
+...
+Sales Band
+Low       < ₹2,000
+Medium    ₹2,000–₹5,000
+High      > ₹5,000
+Profit Status
+Profit ≥ 0  → Profitable
+Profit < 0  → Loss
+📊 Dashboard
+
+The project includes an interactive Retail Sales & Profit Performance Dashboard.
+
+KPI Cards
+💰 Total Sales
+🛒 Total Orders
+📈 Total Profit
+📊 Profit Margin %
+💵 Average Order Value
+Dashboard Charts
+Sales by Region
+State by Category – Map
+Sales & Profit by Month
+Sales & Profit by Category
+Sales by Payment Method Type
+Sales & Profit by Product
+Interactive Filters
+State
+Payment Method
+Region
+Category
+❓ Business Questions
+
+The analysis answers questions such as:
+
+What is the total sales?
+What is the total profit?
+How many orders were placed?
+What is the average order value?
+Which region has the highest sales?
+Which region has the highest profit?
+Which region has the highest profit margin?
+Which states perform best?
+What are the Top 10 products by sales?
+What are the Top 10 products by profit?
+Which products have high sales but low profit?
+Which category has the highest sales?
+Which category has the highest profit?
+Which category has the weakest margin?
+Does discount affect profitability?
+Which month has the highest sales?
+Which month has the highest profit?
+Which month has the lowest performance?
+Which payment method generates the most sales?
+Who are the Top 10 customers?
+Who is the top salesperson?
+Which products are loss-making?
+Which areas require management attention?
+What actions should management take?
+💡 Business Insights
+
+The analysis focuses on identifying:
+
+High-performing regions
+High-profit products
+Strong and weak categories
+Monthly sales trends
+Payment-method performance
+High-sales/low-profit products
+Discount and margin relationships
+Loss-making areas
+
+The final insights are based on the calculated Excel results rather than assumptions.
+
+📈 Recommendations
+
+Based on the analysis, management can:
+
+Focus on high-profit products and categories.
+Review high-discount transactions.
+Investigate high-sales but low-margin products.
+Improve performance in weaker regions.
+Monitor low-margin categories.
+Use monthly trends for future sales planning.
+🎓 Skills Demonstrated
+Excel
+Data Cleaning
+Data Validation
+Excel Tables
+IF
+SUM
+SUMIFS
+COUNTIFS
+XLOOKUP
+Date Functions
+Text Functions
+Calculated Fields
+Pivot Tables
+Pivot Charts
+Slicers
+Conditional Formatting
+KPI Development
+Dashboard Design
+Map Visualization
+Business Analysis
+🏆 Project Outcome
+
+This project demonstrates the ability to take raw business data and convert it into actionable management information using Excel.
+
+The final deliverable follows a complete Data Analyst workflow:
+
+Clean → Calculate → Analyze → Visualize → Interpret → Recommend
+
+👩‍💻 Author
+
+Niveditha Yellanuru
+
+Aspiring Data Analyst | Excel | SQL | Power BI | Python
+
+Project Type
+
+Retail Sales & Profitability Analysis – Excel Data Analyst Project
