@@ -1,4 +1,4 @@
-<img width="930" alt="dashboard" src="https://github.com/workwithshreesh/Excel-DataAnalyst-Projects/assets/117170243/a2a4616d-fff0-41f2-97bf-a028f4f3519e">
+<img width="930" alt="dashboard" src="">
 
 # Excel Data Analyst Project: Dynamic Dashboard for SuperstoreUS Sales Analysis
 
