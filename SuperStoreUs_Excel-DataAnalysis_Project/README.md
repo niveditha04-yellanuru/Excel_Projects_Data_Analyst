@@ -1,4 +1,4 @@
-<img width="930" alt="dashboard" src="">
+<img width="930" alt="dashboard" src="SuperStoreUs_Excel-DataAnalysis_Project/Image/Screenshot 2026-09-03 235022.png">
 
 # Excel Data Analyst Project: Dynamic Dashboard for SuperstoreUS Sales Analysis
 
