@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SuperStore Sales Intelligence</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+<!-- Excel / CSV Reader -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<!-- Plotly Map -->
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-icon"></div>
+
+    <h2>SuperStore Intelligence</h2>
+
+    <p>Preparing your analytics workspace...</p>
+
+</div>
+
+
+
+<!-- HEADER -->
+
+<header class="top-header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+        </div>
+
+        <div>
+
+            <h1>
+                SuperStore Sales Analysis
+            </h1>
+
+            <p>
+                Interactive Business Analytics Platform
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-right">
+
+        <div class="live-status">
+
+            <span class="live-dot"></span>
+
+            LIVE DATA
+
+        </div>
+
+
+        <div class="clock" id="clock">
+
+        </div>
+
+
+        <button
+        class="icon-btn"
+        onclick="toggleTheme()"
+        title="Toggle Theme">
+
+        Theme
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="app">
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside class="sidebar">
+
+
+<div class="sidebar-title">
+
+FILTER DASHBOARD
+
+</div>
+
+
+<div class="filter-card">
+
+<h4>Order Priority</h4>
+
+<div id="priorityFilters"></div>
+
+</div>
+
+
+
+<div class="filter-card">
+
+<h4>Customer Segment</h4>
+
+<div id="segmentFilters"></div>
+
+</div>
+
+
+
+<div class="filter-card">
+
+<h4>Quick Filters</h4>
+
+<label class="check-item">
+
+<input
+type="checkbox"
+id="positiveProfit"
+onchange="updateDashboard()">
+
+Positive Profit Only
+
+</label>
+
+</div>
+
+
+<button
+class="clear-btn"
+onclick="clearFilters()">
+
+Reset Filters
+
+</button>
+
+
+</aside>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="main">
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+<div>
+
+<h2>
+Business Performance Overview
+</h2>
+
+<p>
+
+Transforming SuperStore data into actionable business intelligence.
+
+</p>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="action-btn upload"
+onclick="document.getElementById('fileInput').click()">
+
+Upload Data
+
+</button>
+
+
+<button
+class="action-btn download"
+onclick="downloadCSV()">
+
+Export Data
+
+</button>
+
+
+<button
+class="action-btn refresh"
+onclick="refreshDashboard()">
+
+Refresh
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- FILE UPLOAD -->
+
+<div class="file-area">
+
+<h3>
+Connect Your Real SuperStore Dataset
+</h3>
+
+<p>
+
+Upload your CSV or Excel dataset and the dashboard will automatically analyze your data.
+
+</p>
+
+
+<div class="file-input">
+
+<input
+type="file"
+id="fileInput"
+accept=".csv,.xlsx,.xls"
+onchange="loadFile(event)">
+
+<label
+for="fileInput"
+class="file-label">
+
+Choose Dataset
+
+</label>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================
+     KPIs
+========================================= -->
+
+<section class="kpi-grid">
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+
+Average Discount
+
+</div>
+
+<div
+class="kpi-value"
+id="avgDiscount">
+
+0%
+
+</div>
+
+<div class="kpi-sub">
+
+Discount Performance
+
+</div>
+
+</div>
+
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+
+Total Sales
+
+</div>
+
+<div
+class="kpi-value"
+id="totalSales">
+
+$0
+
+</div>
+
+<div class="kpi-sub">
+
+Revenue Generated
+
+</div>
+
+</div>
+
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+
+Total Profit
+
+</div>
+
+<div
+class="kpi-value"
+id="totalProfit">
+
+$0
+
+</div>
+
+<div class="kpi-sub">
+
+Profit Performance
+
+</div>
+
+</div>
+
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+
+Profit Margin
+
+</div>
+
+<div
+class="kpi-value"
+id="profitMargin">
+
+0%
+
+</div>
+
+<div class="kpi-sub">
+
+Business Efficiency
+
+</div>
+
+</div>
+
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+
+Average Order Value
+
+</div>
+
+<div
+class="kpi-value"
+id="avgOrder">
+
+$0
+
+</div>
+
+<div class="kpi-sub">
+
+Customer Spending
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     ROW 1
+========================================= -->
+
+<section class="dashboard-grid">
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h3>
+Order Priority by Profit & Sales
+</h3>
+
+<span>
+Interactive
+</span>
+
+</div>
+
+<div class="chart-box">
+
+<canvas id="priorityChart"></canvas>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h3>
+Sum of Profit
+</h3>
+
+<span>
+Distribution
+</span>
+
+</div>
+
+<div class="chart-box">
+
+<canvas id="profitChart"></canvas>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h3>
+Profit on Top 5 Product Sub-Categories
+</h3>
+
+<span>
+Top Performers
+</span>
+
+</div>
+
+<div class="chart-box">
+
+<canvas id="subcategoryChart"></canvas>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     ROW 2
+========================================= -->
+
+<section class="dashboard-grid two">
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h3>
+Customer Segmentation by Profit & Sales
+</h3>
+
+<span>
+Customer Analysis
+</span>
+
+</div>
+
+<div class="chart-box">
+
+<canvas id="segmentChart"></canvas>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-title">
+
+<h3>
+Shipping Cost by Shipping Mode & Months
+</h3>
+
+<span>
+Operational Analysis
+</span>
+
+</div>
+
+<div class="chart-box">
+
+<canvas id="shippingChart"></canvas>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     MAP + INSIGHTS
+========================================= -->
+
+<section class="dashboard-grid">
+
+
+<div class="card map-card">
+
+<div class="card-title">
+
+<h3>
+State by Sales
+</h3>
+
+<span>
+Geographical Performance
+</span>
+
+</div>
+
+<div id="salesMap"></div>
+
+</div>
+
+
+
+<div class="insight-card">
+
+<h3>
+Smart Business Insights
+</h3>
+
+<div id="insights">
+
+<div class="insight-item">
+
+Upload your SuperStore dataset to generate live insights.
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     TABLE
+========================================= -->
+
+<section class="table-card">
+
+
+<div class="table-top">
+
+<h3>
+Data Explorer
+</h3>
+
+
+<input
+class="search-box"
+id="searchBox"
+placeholder="Search transactions..."
+onkeyup="renderTable()">
+
+
+</div>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead id="tableHead">
+
+</thead>
+
+
+<tbody id="tableBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+</div>
+
+
+
+<div
+class="toast"
+id="toast">
+
+Dashboard Updated
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
